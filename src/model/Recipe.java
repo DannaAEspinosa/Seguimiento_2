@@ -3,6 +3,8 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+import exception.NegativeNumberException;
+
 public class Recipe {
 	private List<Ingredient> ingredients;
 	
@@ -21,7 +23,11 @@ public class Recipe {
 		}
 		
 		if(searched!=null) {
-			searched.addWeight(w);
+			try {
+				searched.addWeight(w);
+			} catch (NegativeNumberException ex) {
+				ex.printStackTrace();
+			}
 		}else {
 			Ingredient newIngredient = new Ingredient(n, w);
 			ingredients.add(newIngredient);
